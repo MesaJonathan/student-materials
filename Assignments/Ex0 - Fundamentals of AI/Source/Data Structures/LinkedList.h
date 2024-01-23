@@ -30,8 +30,8 @@ class LinkedList{
                     curr = node;
                 }
 
-                T opeator*() const{
-                    return *node.data;
+                T operator*() const{
+                    return *curr.data;
                 }
 
                 Iterator& operator++(){
@@ -39,7 +39,7 @@ class LinkedList{
                     return this;
                 }
 
-                bool opeator==(Iterator const& rhs){
+                bool operator== (Iterator const& rhs){
                     if(curr == rhs.curr){
                         return true;
                     }else{
@@ -57,8 +57,8 @@ class LinkedList{
         };
 
         LinkedList<T>(){
-            head = NULL;
-            tail = NULL;
+            head = nullptr;
+            tail = nullptr;
         }
 
         Iterator begin() const{
@@ -70,7 +70,7 @@ class LinkedList{
         }
 
         bool isEmpty() const{
-            if (head == NULL){
+            if (head == nullptr){
                 return true;
             }else{
                 return false;
@@ -87,25 +87,25 @@ class LinkedList{
 
         void enqueue(T element){
             //empty case
-            if(head == NULL && tail == NULL){
-                Node newNode = new Node(element, NULL, NULL);
-                head = &NewNode;
-                tail = &NewNode;
+            if(head == nullptr && tail == nullptr){
+                Node newNode = new Node(element, nullptr, nullptr);
+                head = &newNode;
+                tail = &newNode;
             }else{  //non-empty case
-                // create new node with current tail as its prev val and NULL as its next val
-                Node newNode = new Node(element, tail, NULL);
+                // create new node with current tail as its prev val and nullptr as its next val
+                Node newNode = new Node(element, tail, nullptr);
 
                 //set new node as current tail's next
                 tail->next = &newNode;
 
                 //make new node the new tail 
-                tail = &NewNode;
+                tail = &newNode;
             }
         }
 
         void dequeue(){
             Node* newHead = head->next;
-            newHead->prev = NULL;
+            newHead->prev = nullptr;
 
             // delete the node stored in head
             delete head;
@@ -115,8 +115,8 @@ class LinkedList{
 
         void pop(){
             Node* temp = tail;
-            Node* newTail = tail.prev;
-            newTail->next = NULL;
+            Node* newTail = tail->prev;
+            newTail->next = nullptr;
 
             // delete the node stored in tail
             delete tail;
@@ -126,7 +126,7 @@ class LinkedList{
 
         void clear(){
             Node* it = head;
-            while (it != NULL){
+            while (it != nullptr){
                 Node* n =  it->next;
                 
                 // here add the code that deletes the node it points too
@@ -137,11 +137,11 @@ class LinkedList{
         }
 
         bool contains(T element) const{
-            result = false;
+            bool result = false;
 
             Node* it = head;
-            while (it != NULL){
-                if (*it.data == element){
+            while (it != nullptr){
+                if (it->data == element){
                     result = true;
                     break;
                 }
@@ -152,8 +152,8 @@ class LinkedList{
 
         void remove(T element){
             Node* it = head;
-            while (it != NULL){
-                if (*it.data == element){
+            while (it != nullptr){
+                if (it->data == element){
                     //here add the code to delete it
                     delete it;
                 }
